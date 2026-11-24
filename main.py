@@ -6,10 +6,17 @@ does not exist to /output/entry.txt.
 
 import os
 
-FORECAST = (
-    "Good morning, Grumplewick: 14°C with light drizzle, clearing by nine "
-    "— and yes, the 8:15 bus is actually on time."
-)
+CITY_NAME = "Grumplewick"
+SKY_REPORT = "14°C with light drizzle, clearing by nine"
+BUS_REPORT = "the 8:15 bus is actually on time"
+
+
+def greeting():
+    """Assemble the one-line forecast from its named parts."""
+    return (
+        "Good morning, " + CITY_NAME + ": " + SKY_REPORT
+        + " — and yes, " + BUS_REPORT + "."
+    )
 
 
 def validate(line):
@@ -26,7 +33,7 @@ def main():
     out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "output")
     os.makedirs(out_dir, exist_ok=True)
     with open(os.path.join(out_dir, "entry.txt"), "w", encoding="utf-8") as fh:
-        fh.write(validate(FORECAST))
+        fh.write(validate(greeting()))
 
 
 if __name__ == "__main__":
